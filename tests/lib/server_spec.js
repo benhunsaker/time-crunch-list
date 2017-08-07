@@ -10,7 +10,6 @@ const internals = {};
 internals.plugins = [
     require('inert'),
     require('../../lib/plugins/goodConfig'),
-    require('../../lib/plugins/mongoConfig'),
     require('../../lib/routes/api')
 ];
 internals.server = { port: 9999 };
