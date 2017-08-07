@@ -48,7 +48,9 @@
     "hapi-mongodb": "^6.2.1",
     "inert": "^4.2.0",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
