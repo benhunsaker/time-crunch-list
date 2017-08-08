@@ -56,4 +56,12 @@ export class PatientsPage extends Component {
     }
 }
 
+PatientsPage.propTypes = {
+    patients: PropTypes.object,
+    proposedDeletion: PropTypes.any,
+    removePatient: PropTypes.func,
+    saveMessage: PropTypes.func,
+    resetProposedDeletion: PropTypes.func
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(PatientsPage);

@@ -15,7 +15,7 @@ const compareFunc = (a, b) => {
 
     if (a > b) return -1;
     else if (a < b) return 1;
-    else return 0;
+    return 0;
 };
 
 const sortThePatients = (patients, sort) => {
@@ -26,7 +26,7 @@ const sortThePatients = (patients, sort) => {
         const result = compareFunc(patients[a][sort.attr], patients[b][sort.attr]);
         return (sort.dir === 'ASC') ? -1 * result : result;
     });
-}
+};
 
 
 export const app = (state = initialState, action) => {
@@ -37,7 +37,10 @@ export const app = (state = initialState, action) => {
         case ACTIONS.APP_LOAD:
             const patients = {};
 
-            PatientsStore.forEach((patient) => patients[patient.uid] = patient);
+            PatientsStore.forEach((patient) => {
+
+                patients[patient.uid] = patient;
+            });
             const patientIds = sortThePatients(patients, state.sort);
 
             return Object.assign({}, state, { patients, patientIds });

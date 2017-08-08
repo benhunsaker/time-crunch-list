@@ -73,7 +73,7 @@ export class NewPatientForm extends Component {
     addNewPatient(e) {
 
         e.preventDefault();
-        if (this.validateModel() === 0){
+        if (this.validateModel() === 0) {
             const newPatient = this.state.newPatient;
             this.props.addPatient(newPatient);
             this.props.saveMessage(`Successfully added ${newPatient.FirstName} ${newPatient.LastName}`);
@@ -101,10 +101,12 @@ export class NewPatientForm extends Component {
     }
 
     getErrorClass(key) {
+
         return this.state.validationErrors[key] ? 'validation-error' : null;
     }
 
     renderErrorMessage(key) {
+
         return this.state.validationErrors[key] ? <span className="validation-error-message">{this.state.validationErrors[key]}</span> : null;
     }
 
@@ -145,5 +147,12 @@ export class NewPatientForm extends Component {
         );
     }
 }
+
+NewPatientForm.propTypes = {
+    addPatient: PropTypes.func,
+    saveMessage: PropTypes.func,
+    hidePatientForm: PropTypes.func,
+    displayPatientForm: PropTypes.bool
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewPatientForm);

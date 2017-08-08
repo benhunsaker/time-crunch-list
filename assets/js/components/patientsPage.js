@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { APP_LOAD, SORT_PATIENTS, OPEN_FORM, CLOSE_FORM, REMOVE_PATIENT, SAVE_PATIENT } from '../actions';
+import { APP_LOAD, SORT_PATIENTS, OPEN_FORM, REMOVE_PATIENT } from '../actions';
 import DeletePatient from './deletePatient';
 import NewPatientForm from './NewPatientForm';
 import MessageBoard from './messageBoard';
@@ -103,11 +103,20 @@ export class PatientsPage extends Component {
                 <NewPatientForm />
                 <DeletePatient
                     proposedDeletion={this.state.proposedDeletion}
-                    resetProposedDeletion={() => {this.setState({ proposedDeletion: null });}}
+                    resetProposedDeletion={() => this.setState({ proposedDeletion: null })}
                 />
             </div>
         );
     }
 }
+
+PatientsPage.propTypes = {
+    onLoad: PropTypes.func,
+    showPatientForm: PropTypes.func,
+    sortPatients: PropTypes.func,
+    sort: PropTypes.object,
+    patients: PropTypes.object,
+    patientIds: PropTypes.array
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PatientsPage);
