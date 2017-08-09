@@ -6,7 +6,7 @@ module.exports = {
     },
     "rules": {
         "no-console": 2,
-        "curly": 1
+        "curly": 0
     },
     plugins: ['react']
 };

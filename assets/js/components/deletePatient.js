@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 
 import { REMOVE_PATIENT, SaveMessage } from '../actions';
 
@@ -48,9 +49,9 @@ export class PatientsPage extends Component {
                 onRequestClose={this.props.resetProposedDeletion}
                 contentLabel="Delete Modal"
             >
-                <p>Are you sure you want to delete {patient.FirstName} {patient.LastName}?</p>
-                <a href="#" onClick={this.continueWithPatientDeletion(true)}>Yes, you are kind of making a big of this.</a>
-                <a href="#" onClick={this.continueWithPatientDeletion(false)}>No, we need to keep them.</a>
+                <p className="h3">Are you sure you want to delete {patient.FirstName} {patient.LastName}?</p>
+                <a href="#" className="btn btn-danger mr-3" onClick={this.continueWithPatientDeletion(true)}>Yes, you are kind of making a big of this.</a>
+                <a href="#" className="btn link" onClick={this.continueWithPatientDeletion(false)}>No, we need to keep them.</a>
             </Modal>
         );
     }

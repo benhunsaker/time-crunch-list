@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { APP_LOAD, SORT_PATIENTS, OPEN_FORM, REMOVE_PATIENT } from '../actions';
 import DeletePatient from './deletePatient';
@@ -69,10 +70,30 @@ export class PatientsPage extends Component {
 
         const patient = this.props.patients[patientId];
         return (
-            <li key={patient.uid}>
-                {patient.LastName}, {patient.FirstName} — {patient.PhoneNumber} — {patient.ZipCode}
-                <a href="#" onClick={this.proposedPatientDeletion(patient.uid)}>delete</a>
-            </li>
+            <div className="col-md-6 col-lg-4" key={patient.uid}>
+                <div className="card patient--card mb-4">
+                    <div className="card-block">
+                        <h5 className="patient--name">
+                            <img src="/img/glyphicons-4-user.png" className="info-icon mr-2" />
+                            {patient.LastName}, {patient.FirstName}
+                        </h5>
+                        <div className="row">
+                            <p className="patient--phone-number col mb-0">
+                                <img src="/img/glyphicons-443-earphone.png" className="info-icon mr-2"/>
+                                {patient.PhoneNumber}
+                            </p>
+                            <p className="patient--zip-code col-3 col-xl-4 mb-0">
+                                <img src="/img/glyphicons-341-globe.png" className="info-icon mr-2" />
+                                {patient.ZipCode}
+                            </p>
+                        </div>
+
+                        <button type="button" className="patient--delete-link close text-danger" data-dismiss="alert" aria-label="Close" onClick={this.proposedPatientDeletion(patient.uid)}>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         );
     }
 
@@ -81,25 +102,27 @@ export class PatientsPage extends Component {
         return (
             <div>
                 <MessageBoard />
-                <form>
-                    <a onClick={this.openForm}>Add a  New Patient</a>
-                    <p>
-                        <label htmlFor="sort-by">Sort by:</label>
-                        <select id="sort-by" value={this.props.sort.attr} onChange={this.sortIt('attr')}>
+                <form className="row p-3">
+                    <div className="col-md-3 pl-0">
+                        <a className="btn btn-primary" href="#" onClick={this.openForm}>Add a  New Patient</a>
+                    </div>
+                    <div className="col mt-3 mt-md-0 text-md-right p-0">
+                        <label htmlFor="sort-by" className="mr-3">Sort by:</label>
+                        <select id="sort-by" className="custom-select mr-3" value={this.props.sort.attr} onChange={this.sortIt('attr')}>
                             <option value="FirstName">First Name</option>
                             <option value="LastName">Last Name</option>
                             <option value="PhoneNumber">Phone Number</option>
                             <option value="ZipCode">Zip Code</option>
                         </select>
-                        <select id="sort-by" value={this.props.sort.dir} onChange={this.sortIt('dir')}>
+                        <select id="sort-by" className="custom-select" value={this.props.sort.dir} onChange={this.sortIt('dir')}>
                             <option value="ASC">ASC</option>
                             <option value="DESC">DESC</option>
                         </select>
-                    </p>
+                    </div>
                 </form>
-                <ul className="patient-list">
+                <div className="row patient-list">
                     {this.props.patientIds.map(this.renderPatient)}
-                </ul>
+                </div>
                 <NewPatientForm />
                 <DeletePatient
                     proposedDeletion={this.state.proposedDeletion}

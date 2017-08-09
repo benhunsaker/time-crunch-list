@@ -1,0 +1,20 @@
+.patient {
+    &--item {
+        list-style: none;
+    }
+
+    &--card {
+        box-shadow: 0 1px 1px rgba(255, 255, 255, .7);
+    }
+
+    &--delete-link {
+        display: none;
+        position: absolute;
+        right: 5px;
+        top: 0;
+    }
+
+    &--card:hover &--delete-link {
+        display: block;
+    }
+}
